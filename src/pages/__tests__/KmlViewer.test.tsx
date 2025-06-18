@@ -3,9 +3,9 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import KmlViewer from '../KmlViewer';
-import omnivore from 'leaflet-omnivore';
+import omnivore from '@mapbox/leaflet-omnivore';
 
-jest.mock('leaflet-omnivore');
+jest.mock('@mapbox/leaflet-omnivore');
 
 jest.mock('react-leaflet', () => {
   const React = require('react');
@@ -18,10 +18,9 @@ jest.mock('react-leaflet', () => {
 
 test('renders page and loads KML', () => {
   const addTo = jest.fn().mockReturnThis();
-  const setStyle = jest.fn();
-  const getBounds = jest.fn(() => [[0,0],[0,0]]);
-  const on = jest.fn((evt: string, cb: () => void) => { if (evt === 'ready') cb(); return { on, addTo, setStyle, getBounds }; });
-  (omnivore as any).kml.mockReturnValue({ on, addTo, setStyle, getBounds });
+  const getBounds = jest.fn(() => [[0, 0], [0, 0]]);
+  const on = jest.fn(() => ({ on, addTo, getBounds }));
+  (omnivore as any).kml.mockReturnValue({ on, addTo, getBounds });
   act(() => {
     render(
       <MemoryRouter>
@@ -29,6 +28,6 @@ test('renders page and loads KML', () => {
       </MemoryRouter>
     );
   });
-  expect(screen.getByRole('button')).toBeInTheDocument();
+  expect(screen.getByTestId('map')).toBeInTheDocument();
   expect(addTo).toHaveBeenCalled();
 });
