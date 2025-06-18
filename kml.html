@@ -19,11 +19,17 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-    omnivore.kml(kmlUrl, null, L.geoJSON(null, {
-      style: { color: '#7C3AED', weight: 2, fillOpacity: 0.3 }
-    })).on('ready', function() {
-      map.fitBounds(this.getBounds());
-    }).addTo(map);
+    // ---------- KML layer
+    const parcelStyle = { color: '#FF007C', weight: 3, fillOpacity: 0.25 };
+
+    omnivore.kml(kmlUrl)
+      .on('ready', function () {
+        // Style each feature and zoom to it
+        this.eachLayer(layer => layer.setStyle(parcelStyle));
+        map.fitBounds(this.getBounds());
+      })
+      .on('error', () => alert('Failed to load KML layer.'))
+      .addTo(map);
   </script>
 </body>
 </html>
