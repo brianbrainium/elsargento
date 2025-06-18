@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="root_doc">
+	<name>POLÍGONO GENERAL.kml</name>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10201"></atom:link>
+	<Schema name="polgonos" id="polgonos7">
+		<SimpleField type="int" name="begin"></SimpleField>
+		<SimpleField type="int" name="end"></SimpleField>
+		<SimpleField type="float" name="HAS"></SimpleField>
+	</Schema>
+	<Style id="style13">
+		<LineStyle>
+			<color>ff0701fc</color>
+			<width>11</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="style14">
+		<LineStyle>
+			<color>ff0701fc</color>
+			<width>11</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="stylemap_id12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#style13</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#style14</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder>
+		<name>polgonos</name>
+		<Placemark>
+			<styleUrl>#stylemap_id12</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#polgonos7">
+					<SimpleData name="begin">1</SimpleData>
+					<SimpleData name="end">19</SimpleData>
+					<SimpleData name="HAS">244.804</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								-110.030965139524,23.9211747351792,0 -110.031448378001,23.9106633808789,0 -110.05602954698,23.9119002971733,0 -110.055979905302,23.9154340424115,0 -110.055922263284,23.9195270610547,0 -110.054642641051,23.9196546709392,0 -110.054465514022,23.9197337818134,0 -110.054062092863,23.9196954448037,0 -110.053520924411,23.9197520834973,0 -110.052932638508,23.9197086313978,0 -110.052763314636,23.919660624144,0 -110.052570196035,23.9196690978768,0 -110.051066067523,23.9197975519907,0 -110.050590818422,23.9197605688164,0 -110.048414153006,23.9191953741708,0 -110.048214916237,23.9191271267836,0 -110.040092390077,23.9199834811549,0 -110.037957882229,23.9208163016873,0 -110.030965139524,23.9211747351792,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>
