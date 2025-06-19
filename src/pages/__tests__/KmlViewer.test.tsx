@@ -12,7 +12,7 @@ jest.mock('react-leaflet', () => {
   const React = require('react');
   return {
     MapContainer: ({ children }: any) => <div data-testid="map">{children}</div>,
-    TileLayer: () => null,
+    TileLayer: (props: any) => <div data-testid="tile" {...props} />,
     useMap: () => ({ fitBounds: jest.fn(), addLayer: jest.fn(), removeLayer: jest.fn() })
   };
 });
@@ -33,4 +33,8 @@ test('renders page and loads KML', () => {
   });
   expect(screen.getByTestId('map')).toBeInTheDocument();
   expect(addTo).toHaveBeenCalled();
+  expect(screen.getByTestId('tile')).toHaveAttribute(
+    'url',
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+  );
 });
