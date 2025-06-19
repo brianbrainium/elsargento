@@ -16,9 +16,12 @@
   <script>
     const kmlUrl = 'parcel.kml';
     var map = L.map('map').setView([0, 0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      {
+        attribution: 'Tiles \xA9 Esri — Source: Esri, Maxar, Earthstar, GeoEye'
+      }
+    ).addTo(map);
     // ---------- KML layer
     const parcelStyle = { color: '#FF007C', weight: 3, fillOpacity: 0.25 };
 
