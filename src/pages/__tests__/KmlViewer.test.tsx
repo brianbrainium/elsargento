@@ -64,3 +64,37 @@ test('displays snackbar when KML fails to load', () => {
 
   expect(enqueueSnackbar).toHaveBeenCalledWith('Failed to load KML layer', { variant: 'error' });
 });
+
+test('logs error when KML fails with 404', () => {
+  const addTo = jest.fn().mockReturnThis();
+  const on = jest.fn((event: string, cb: any) => {
+    if (event === 'error') {
+      cb(new Error('404'));
+    }
+    return { on, addTo };
+  });
+  (omnivore as any).kml.mockReturnValue({ on, addTo });
+
+  const enqueueSnackbar = jest.fn();
+  jest.spyOn(require('notistack'), 'useSnackbar').mockReturnValue({ enqueueSnackbar });
+
+  const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+  act(() => {
+    render(
+      <MemoryRouter>
+        <SnackbarProvider>
+          <KmlViewer />
+        </SnackbarProvider>
+      </MemoryRouter>
+    );
+  });
+
+  expect(consoleSpy).toHaveBeenCalledWith(
+    '[KmlViewer] Failed to load KML layer:',
+    expect.any(Error)
+  );
+  expect((consoleSpy.mock.calls[0][1] as Error).message).toBe('404');
+
+  expect(enqueueSnackbar).toHaveBeenCalledWith('Failed to load KML layer', { variant: 'error' });
+});
