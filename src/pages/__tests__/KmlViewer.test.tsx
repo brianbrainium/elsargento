@@ -38,3 +38,29 @@ test('renders page and loads KML', () => {
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
   );
 });
+
+test('displays snackbar when KML fails to load', () => {
+  const addTo = jest.fn().mockReturnThis();
+  const on = jest.fn((event: string, cb: any) => {
+    if (event === 'error') {
+      cb(new Error('404'));
+    }
+    return { on, addTo };
+  });
+  (omnivore as any).kml.mockReturnValue({ on, addTo });
+
+  const enqueueSnackbar = jest.fn();
+  jest.spyOn(require('notistack'), 'useSnackbar').mockReturnValue({ enqueueSnackbar });
+
+  act(() => {
+    render(
+      <MemoryRouter>
+        <SnackbarProvider>
+          <KmlViewer />
+        </SnackbarProvider>
+      </MemoryRouter>
+    );
+  });
+
+  expect(enqueueSnackbar).toHaveBeenCalledWith('Failed to load KML layer', { variant: 'error' });
+});
