@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 import KmlViewer from '../KmlViewer';
 import omnivore from '@mapbox/leaflet-omnivore';
 
@@ -24,7 +25,9 @@ test('renders page and loads KML', () => {
   act(() => {
     render(
       <MemoryRouter>
-        <KmlViewer />
+        <SnackbarProvider>
+          <KmlViewer />
+        </SnackbarProvider>
       </MemoryRouter>
     );
   });
