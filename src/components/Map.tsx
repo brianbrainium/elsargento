@@ -11,15 +11,13 @@ export default function Map({ showParcel = true, showAmenities = true }: { showP
   const initialized = React.useRef(false);
 
   const handleParcelLoad = (geojson: FeatureCollection) => {
-    if (initialized.current) return;
-    const centroid = centerOfMass(geojson);
-    const [lng, lat] = centroid.geometry.coordinates;
-    const updated = amenities.map((a) => ({
-      ...a,
-      geometry: { ...a.geometry, coordinates: [lng, lat] },
-    }));
-    setAmenityData(updated);
-    initialized.current = true;
+    if (!initialized.current) {
+      const centroid = centerOfMass(geojson);
+      const [lng, lat] = centroid.geometry.coordinates;
+      amenities.forEach((a) => (a.geometry.coordinates = [lng, lat]));
+      setAmenityData([...amenities]);
+      initialized.current = true;
+    }
   };
 
   return (

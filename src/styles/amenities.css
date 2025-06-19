@@ -1,3 +1,9 @@
-.leaflet-marker-icon.amenity-clubhouse { background:#623cea;border-radius:50%;width:14px;height:14px; }
-.leaflet-marker-icon.amenity-pool      { background:#1fa3ff;border-radius:50%;width:14px;height:14px; }
-.leaflet-marker-icon.amenity-parking   { background:#666;border-radius:50%;width:14px;height:14px; }
+
+.leaflet-marker-icon.amenity-clubhouse,
+.leaflet-div-icon.amenity-clubhouse { background:#623cea;border-radius:50%;width:14px;height:14px; }
+
+.leaflet-marker-icon.amenity-pool,
+.leaflet-div-icon.amenity-pool      { background:#1fa3ff;border-radius:50%;width:14px;height:14px; }
+
+.leaflet-marker-icon.amenity-parking,
+.leaflet-div-icon.amenity-parking   { background:#666;border-radius:50%;width:14px;height:14px; }
