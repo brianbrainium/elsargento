@@ -11,8 +11,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.1",
     "leaflet": "^1.9.4",
     "leaflet-omnivore": "^0.3.4",
+    "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
