@@ -5,7 +5,9 @@ import * as L from "leaflet";
 import omnivore from "@mapbox/leaflet-omnivore";
 import { useSnackbar } from "notistack";
 
-const KML_PATH = "/poligono-244ha.kml";
+// Use a relative path so deployments under a subfolder work (e.g. GitHub Pages)
+// without 404 errors when loading the KML file.
+const KML_PATH = "poligono-244ha.kml";
 
 export default function KmlViewer() {
   return (
