@@ -11,11 +11,25 @@
 </head>
 <body>
   <h1>El Sargento – project hub</h1>
+  <p id="build-meta" style="font-size:.9rem;color:#6b7280;margin-top:.25rem;"></p>
   <nav>
     <a href="index.html">Home</a>
     <a href="kml.html">Parcel Map</a>
     <a href="README.md">Brain Map</a>
   </nav>
   <p>Use the links above to explore the repo’s live views.</p>
+  <script type="module">
+(async () => {
+  /* Fetch latest commit on default branch via GitHub REST v3 */
+  const res = await fetch(
+    "https://api.github.com/repos/brianbrainium/elsargento/commits?per_page=1"
+  );
+  if (!res.ok) return;                          // graceful fallback
+  const [{ sha, commit }] = await res.json();   // newest commit
+  const ts   = new Date(commit.committer.date).toISOString().replace("T"," ").slice(0,16) + " UTC";
+  const meta = `deployed ${ts} – commit ${sha.slice(0,7)}`;
+  document.getElementById("build-meta").textContent = meta;
+})();
+</script>
 </body>
 </html>
